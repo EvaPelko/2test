@@ -58,7 +58,9 @@ export default {
 	watch: {},
 	methods: {
 
-		ocistiFormu() { },
+		ocistiFormu() {
+			this.$refs.form.reset()
+		},
 		dodajStudenta() {
 			let noviStudent = {
 				ime: this.ime,
