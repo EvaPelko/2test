@@ -38,8 +38,24 @@ export default {
 	},
 	data() {
 		return {
+			zadovoljili: [],
+			nisuZadovoljili: [],
+			sviStudent: [],
 			zaglavlje: zaglavlje,
 		};
 	},
+	methods: {
+		loadajStudente() {
+			let student = JSON.parse(localStorage.getItem("studenti"));
+			if (studenti && studenti.length > 0) {
+				this.sviStudenti = [...studenti];
+				this.zadovoljili = [...studenti];
+				this.nisuZadovoljili = [...studenti];
+			}
+		}
+	},
+	created() {
+		this.loadajStudente();
+	}
 };
 </script>

@@ -24,7 +24,7 @@
 						</v-btn>
 						<v-spacer></v-spacer>
 						<v-btn color="red">OČISTI</v-btn>
-						<v-btn>OK</v-btn>
+						<v-btn type="submit" @click="dodajStudenta">OK</v-btn>
 					</v-card-actions>
 				</v-card>
 			</v-col>
@@ -51,7 +51,12 @@ export default {
 		ocistiFormu() { },
 		dodajStudenta() {
 			let noviStudent = {
-				//Dodaj propertyje
+				ime: this.ime,
+				prezime: this.prezime,
+				brojDolazaka: this.brojDolazaka,
+				broj1Kolokvij: this.broj1Kolokvij,
+				broj2Kolokvij: this.broj2Kolokvij,
+				brojPracenje: this.brojPracenje,
 			};
 			//ovo ne diraj
 			let studenti = JSON.parse(localStorage.getItem("studenti"));
@@ -60,6 +65,19 @@ export default {
 			}
 			studenti.push(noviStudent);
 			localStorage.setItem("studenti", JSON.stringify(studenti));
+
+			if (this.ime && this.prezime && this.brojDolazaka && this.broj1Kolokvij && this.broj2Kolokvij && this.brojPracenje) {
+				console.log("login function called")
+			}
+			this.error = [];
+			if (this.ime) {
+				this.error.push("name is required")
+			}
+			if (this.prezime) {
+				this.error.push("prezime is required")
+			}
+			console.ward("errors", this.error)
+			e.preventDefault();
 		},
 		obrisiSveUnesenePodatke() {
 			localStorage.clear();
